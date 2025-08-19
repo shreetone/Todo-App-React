@@ -12,21 +12,17 @@ const TodoForm = () => {
       alert("Task name cannot be empty");
       return;
     }
-
-    // Dispatch action to reducer
     dispatch({
       type: "ADD_TODO",
       payload: { name, description },
     });
-
-    // Clear inputs
     setName("");
     setDescription("");
   };
 
   return (
     <div className="container mt-4">
-      <h2 className="text-center mb-4">📝 Create Your Task</h2>
+      <h2 className="text-center mb-4">Create Your Task</h2>
       <div className="card shadow p-4 rounded">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -51,9 +47,15 @@ const TodoForm = () => {
             ></textarea>
           </div>
 
-          <button type="submit" className="btn btn-primary w-100">
-            Add Task
-          </button>
+          <div className="d-flex justify-content-center">
+            <button
+              type="submit"
+              className="btn btn-primary px-4 mt-2 mb-2 fw-bold  text-white shadow rounded border-0"
+            >
+              Add Task
+            </button>
+          </div>
+
         </form>
       </div>
     </div>

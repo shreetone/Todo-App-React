@@ -18,8 +18,26 @@ export function reducer(state, action) {
       return { ...state, todos: [newTodo, ...state.todos] };
     }
 
-    case "LOAD_TODOS":
-      return { ...state, todos: action.payload };
+    case "TOGGLE_TODO":
+  return {
+    ...state,
+    todos: state.todos.map((todo) =>
+      todo.id === action.payload
+        ? { ...todo, isComplete: !todo.isComplete }
+        : todo
+    ),
+  };
+
+case "REMOVE_TODO":
+  return {
+    ...state,
+    todos: state.todos.filter((todo) => todo.id !== action.payload),
+  };
+    case "CLEAR_COMPLETED":
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => !todo.isComplete),
+      };
 
     default:
       return state;
