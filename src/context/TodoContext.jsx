@@ -1,10 +1,7 @@
 import React, { createContext, useReducer, useEffect } from "react";
 import { initialState, reducer } from "../reducers/TodoReducer";
 
-
-
 const TodoContext = createContext();
-
 const TodoProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState, (init) => {
     try {

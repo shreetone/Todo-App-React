@@ -19,7 +19,6 @@ const TodoForm = () => {
     setName("");
     setDescription("");
   };
-
   return (
     <div className="container mt-4">
       <h2 className="text-center mb-4">Create Your Task</h2>
@@ -43,8 +42,8 @@ const TodoForm = () => {
               rows="3"
               placeholder="Enter task description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
+              onChange={(e) => setDescription(e.target.value)} >
+            </textarea>
           </div>
 
           <div className="d-flex justify-content-center">

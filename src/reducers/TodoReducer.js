@@ -19,20 +19,38 @@ export function reducer(state, action) {
     }
 
     case "TOGGLE_TODO":
-  return {
-    ...state,
-    todos: state.todos.map((todo) =>
-      todo.id === action.payload
-        ? { ...todo, isComplete: !todo.isComplete }
-        : todo
-    ),
-  };
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload
+            ? { ...todo, isComplete: !todo.isComplete }
+            : todo
+        ),
+      };
 
-case "REMOVE_TODO":
-  return {
-    ...state,
-    todos: state.todos.filter((todo) => todo.id !== action.payload),
-  };
+    case "EDIT_TODO": {
+      const { id, name, description } = action.payload;
+      if (!name?.trim()) return state;
+
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === id
+            ? { 
+                ...todo, 
+                name: name.trim(), 
+                description: (description || "").trim() 
+              }
+            : todo
+        ),
+      };
+    }
+    case "REMOVE_TODO":
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo.id !== action.payload),
+      };
+
     case "CLEAR_COMPLETED":
       return {
         ...state,
